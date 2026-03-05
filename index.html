@@ -797,6 +797,10 @@
   .reveal.visible {
     opacity: 1; transform: translateY(0);
   }
+  /* Fallback: show everything if JS/observer fails */
+  .no-observer .reveal {
+    opacity: 1; transform: none;
+  }
 
   /* Licensed badge styling */
   .licensed-badges {
@@ -1301,19 +1305,26 @@
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // Reveal on scroll
+  // Reveal on scroll - with fallback
   const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-        }, i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  revealEls.forEach(el => observer.observe(el));
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+    // Fallback: if nothing is visible after 2s, show everything
+    setTimeout(() => {
+      revealEls.forEach(el => el.classList.add('visible'));
+    }, 2000);
+  } else {
+    // No IntersectionObserver support - show everything
+    document.body.classList.add('no-observer');
+  }
 
   // Form submission
   document.querySelector('.form-submit').addEventListener('click', function(e) {
