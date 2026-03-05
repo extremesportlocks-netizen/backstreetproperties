@@ -804,50 +804,38 @@
   }
 
   /* ─── SCROLL REVEAL ANIMATIONS ─── */
-  .reveal {
+  /* Default: everything visible */
+  .reveal, .reveal-scale, .reveal-left, .reveal-right {
+    opacity: 1;
+    transform: none;
+  }
+  /* Only animate if JS adds the 'sr-ready' class to body */
+  body.sr-ready .reveal {
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .reveal.visible.delay-1 { transition-delay: 0.1s; }
-  .reveal.visible.delay-2 { transition-delay: 0.2s; }
-  .reveal.visible.delay-3 { transition-delay: 0.3s; }
-
-  /* Scale-up variant */
-  .reveal-scale {
+  body.sr-ready .reveal-scale {
     opacity: 0;
     transform: scale(0.92);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-  .reveal-scale.visible {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  /* Slide-in from left */
-  .reveal-left {
+  body.sr-ready .reveal-left {
     opacity: 0;
     transform: translateX(-60px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-  .reveal-left.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  /* Slide-in from right */
-  .reveal-right {
+  body.sr-ready .reveal-right {
     opacity: 0;
     transform: translateX(60px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-  .reveal-right.visible {
+  body.sr-ready .reveal.visible,
+  body.sr-ready .reveal-scale.visible,
+  body.sr-ready .reveal-left.visible,
+  body.sr-ready .reveal-right.visible {
     opacity: 1;
-    transform: translateX(0);
+    transform: none;
   }
 
   /* Gold line wipe for section labels */
@@ -1391,15 +1379,18 @@
   const allReveals = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right');
 
   function revealAll() {
+    document.body.classList.remove('sr-ready');
     allReveals.forEach(el => el.classList.add('visible'));
   }
 
-  if ('IntersectionObserver' in window) {
+  if ('IntersectionObserver' in window && allReveals.length > 0) {
+    // Enable animations only after JS confirms it can handle them
+    document.body.classList.add('sr-ready');
+
     let revealedCount = 0;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Stagger siblings
           const parent = entry.target.parentElement;
           const siblings = parent.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right');
           let delay = 0;
@@ -1418,12 +1409,10 @@
 
     allReveals.forEach(el => observer.observe(el));
 
-    // Safety net: if less than half revealed after 3s, show everything
+    // Safety net: if animations aren't working after 2.5s, kill them and show everything
     setTimeout(() => {
       if (revealedCount < allReveals.length / 2) revealAll();
-    }, 3000);
-  } else {
-    revealAll();
+    }, 2500);
   }
 
   // ─── SUBTLE PARALLAX on hero ───
