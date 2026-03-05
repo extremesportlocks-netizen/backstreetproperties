@@ -63,7 +63,7 @@
     position: relative;
     box-shadow: 0 2px 12px rgba(255,184,28,0.25);
   }
-  .logo-icon svg { width: 28px; height: 28px; fill: var(--black); }
+  .logo-icon svg { width: 32px; height: 32px; }
   .logo-text {
     display: flex; flex-direction: column; line-height: 1;
   }
@@ -820,8 +820,31 @@
   <div class="nav-inner">
     <a href="#home" class="logo">
       <div class="logo-icon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 18h2v2H2zM20 18h2v2h-2zM4 16h16v4H4zM3 14h4l1-3h8l1 3h4v2H3zM7 11h10V8H7zM9 8V6h6v2M6 14l-2 0M18 14l2 0"/>
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+          <!-- Tracks -->
+          <rect x="8" y="24" width="20" height="4" rx="2" fill="#0a0a0a"/>
+          <circle cx="10" cy="26" r="1.5" fill="#333"/>
+          <circle cx="26" cy="26" r="1.5" fill="#333"/>
+          <circle cx="15" cy="26" r="1" fill="#333"/>
+          <circle cx="21" cy="26" r="1" fill="#333"/>
+          <!-- Track frame -->
+          <rect x="9" y="24.5" width="18" height="3" rx="1.5" fill="none" stroke="#333" stroke-width="0.5"/>
+          <!-- Body/cab base -->
+          <rect x="15" y="16" width="12" height="8" rx="1" fill="#0a0a0a"/>
+          <!-- Cab window -->
+          <rect x="20" y="17" width="6" height="5" rx="0.5" fill="#444"/>
+          <rect x="21" y="17.5" width="4.5" height="4" rx="0.3" fill="#222"/>
+          <!-- Boom arm -->
+          <rect x="6" y="13" width="12" height="2.5" rx="0.5" fill="#0a0a0a" transform="rotate(-15 12 14)"/>
+          <!-- Stick -->
+          <rect x="2" y="11" width="7" height="2" rx="0.5" fill="#0a0a0a" transform="rotate(30 5 12)"/>
+          <!-- Bucket -->
+          <path d="M2 16 L4 13 L7 14 L6 17 Z" fill="#0a0a0a"/>
+          <!-- Hydraulic cylinders -->
+          <line x1="14" y1="14" x2="10" y2="10" stroke="#555" stroke-width="0.8"/>
+          <line x1="8" y1="12" x2="5" y2="14" stroke="#555" stroke-width="0.8"/>
+          <!-- Pivot point -->
+          <circle cx="15" cy="16" r="1.2" fill="#555"/>
         </svg>
       </div>
       <div class="logo-text">
