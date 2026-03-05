@@ -796,10 +796,76 @@
     .hero-services span { font-size: 11px; padding: 6px 14px; }
   }
 
-  /* ─── NO SCROLL ANIMATIONS - SHOW EVERYTHING ─── */
+  /* ─── SCROLL REVEAL ANIMATIONS ─── */
   .reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
     opacity: 1;
-    transform: none;
+    transform: translateY(0);
+  }
+  .reveal.visible.delay-1 { transition-delay: 0.1s; }
+  .reveal.visible.delay-2 { transition-delay: 0.2s; }
+  .reveal.visible.delay-3 { transition-delay: 0.3s; }
+
+  /* Scale-up variant */
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Slide-in from left */
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Slide-in from right */
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Gold line wipe for section labels */
+  .section-label::before {
+    transition: width 0.6s ease 0.3s;
+  }
+
+  /* Hover lift on service cards */
+  .service-card {
+    transition: all 0.4s ease, transform 0.3s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(255,184,28,0.08);
+  }
+
+  /* Smooth counter animation */
+  @keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Parallax-style subtle bg shift on hero */
+  .hero-bg {
+    transition: transform 0.1s linear;
   }
 
   /* Licensed badge styling */
@@ -980,13 +1046,13 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="about-inner">
-    <div class="about-image reveal">
+    <div class="about-image reveal-left">
       <img src="vince.jpg" alt="Vince Colaianni - Founder of Backstreet Properties">
       <div class="about-year">
         <span>Est.</span>2021
       </div>
     </div>
-    <div class="about-text reveal">
+    <div class="about-text reveal-right">
       <div class="section-label">Our Story</div>
       <div class="section-title">MEET VINCE COLAIANNI</div>
       <p class="section-desc">My name is Vince Colaianni, and I founded this company in 2021 with one goal in mind — to build things the right way.</p>
@@ -1040,22 +1106,22 @@
       <p class="section-desc">Every project tells a story. Here's a look at some of our recent concrete and retaining wall work across the Pittsburgh area.</p>
     </div>
     <div class="work-grid">
-      <div class="work-item reveal" data-label="Driveway">
+      <div class="work-item reveal-scale" data-label="Driveway">
         <img class="work-bg" src="Driveway.jpg" alt="Custom concrete driveway project">
       </div>
-      <div class="work-item reveal" data-label="Retaining Wall">
+      <div class="work-item reveal-scale" data-label="Retaining Wall">
         <img class="work-bg" src="Retaining_Wall.jpg" alt="Block retaining wall project">
       </div>
-      <div class="work-item reveal" data-label="Decorative Concrete">
+      <div class="work-item reveal-scale" data-label="Decorative Concrete">
         <img class="work-bg" src="Deco_Concrete.jpg" alt="Stamped decorative concrete walkway">
       </div>
-      <div class="work-item reveal" data-label="Sidewalk">
+      <div class="work-item reveal-scale" data-label="Sidewalk">
         <img class="work-bg" src="SideWalk.jpg" alt="Custom concrete sidewalk">
       </div>
-      <div class="work-item reveal" data-label="Demo & Block Wall">
+      <div class="work-item reveal-scale" data-label="Demo & Block Wall">
         <img class="work-bg" src="Demo_Block_Walls.jpg" alt="Demolition and block wall project">
       </div>
-      <div class="work-item reveal" data-label="Stamped Patio">
+      <div class="work-item reveal-scale" data-label="Stamped Patio">
         <img class="work-bg" src="Stamped_Patio.jpg" alt="Stamped patio project">
       </div>
     </div>
@@ -1105,7 +1171,7 @@
       <p class="section-desc">Real reviews from real Pittsburgh homeowners.</p>
     </div>
     <div class="testimonials-grid">
-      <div class="testimonial reveal">
+      <div class="testimonial reveal-scale">
         <div class="testimonial-stars">
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1117,7 +1183,7 @@
         <div class="testimonial-author">Mike T.</div>
         <div class="testimonial-loc">South Hills, PA</div>
       </div>
-      <div class="testimonial reveal">
+      <div class="testimonial reveal-scale">
         <div class="testimonial-stars">
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1129,7 +1195,7 @@
         <div class="testimonial-author">Sarah & Dan K.</div>
         <div class="testimonial-loc">Mt. Washington, PA</div>
       </div>
-      <div class="testimonial reveal">
+      <div class="testimonial reveal-scale">
         <div class="testimonial-stars">
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1158,7 +1224,7 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner">
-    <div class="contact-info reveal">
+    <div class="contact-info reveal-left">
       <div class="section-label">Get in Touch</div>
       <div class="section-title">CONTACT US</div>
       <p class="section-desc">Ready for a new driveway, patio, sidewalk, or retaining wall? We'd love to hear about your project. Reach out for a free, no-obligation estimate.</p>
@@ -1216,7 +1282,7 @@
       </div>
     </div>
 
-    <form class="contact-form reveal" action="https://formsubmit.co/Backstreetproperties@gmail.com" method="POST">
+    <form class="contact-form reveal-right" action="https://formsubmit.co/Backstreetproperties@gmail.com" method="POST">
       <h3>REQUEST A FREE QUOTE</h3>
       <p>Fill out the form and we'll get back to you within 24 hours.</p>
       <input type="hidden" name="_subject" value="New Quote Request — BackstreetProperties.com">
@@ -1325,6 +1391,75 @@
   // No scroll reveal animations - everything visible immediately
 
   // No form JS needed - FormSubmit.co handles it
+
+  // ─── SCROLL REVEAL ───
+  const allReveals = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right');
+
+  function revealAll() {
+    allReveals.forEach(el => el.classList.add('visible'));
+  }
+
+  if ('IntersectionObserver' in window) {
+    let revealedCount = 0;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Stagger siblings
+          const parent = entry.target.parentElement;
+          const siblings = parent.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right');
+          let delay = 0;
+          siblings.forEach(sib => {
+            if (sib.getBoundingClientRect().top < window.innerHeight + 100) {
+              setTimeout(() => sib.classList.add('visible'), delay);
+              delay += 100;
+            }
+          });
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+          revealedCount++;
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    allReveals.forEach(el => observer.observe(el));
+
+    // Safety net: if less than half revealed after 3s, show everything
+    setTimeout(() => {
+      if (revealedCount < allReveals.length / 2) revealAll();
+    }, 3000);
+  } else {
+    revealAll();
+  }
+
+  // ─── SUBTLE PARALLAX on hero ───
+  const heroBg = document.querySelector('.hero-bg');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY < window.innerHeight && heroBg) {
+      heroBg.style.transform = 'translateY(' + (scrollY * 0.15) + 'px)';
+    }
+  }, { passive: true });
+
+  // ─── NAVBAR GOLD LINE on scroll ───
+  const navEl = document.getElementById('navbar');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const current = window.scrollY;
+    navEl.classList.toggle('scrolled', current > 60);
+    lastScroll = current;
+  }, { passive: true });
+
+  // ─── SMOOTH NUMBER COUNT on stats ───
+  const statNums = document.querySelectorAll('.hero-stat .num, .why-num');
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'countUp 0.6s ease forwards';
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  statNums.forEach(el => statObserver.observe(el));
 </script>
 </body>
 </html>
