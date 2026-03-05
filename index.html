@@ -789,17 +789,10 @@
     .hero-services span { font-size: 11px; padding: 6px 14px; }
   }
 
-  /* ─── SCROLL ANIMATIONS ─── */
+  /* ─── NO SCROLL ANIMATIONS - SHOW EVERYTHING ─── */
   .reveal {
-    opacity: 0; transform: translateY(40px);
-    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .reveal.visible {
-    opacity: 1; transform: translateY(0);
-  }
-  /* Fallback: show everything if JS/observer fails */
-  .no-observer .reveal {
-    opacity: 1; transform: none;
+    opacity: 1;
+    transform: none;
   }
 
   /* Licensed badge styling */
@@ -1305,26 +1298,7 @@
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // Reveal on scroll - with fallback
-  const revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
-    revealEls.forEach(el => observer.observe(el));
-    // Fallback: if nothing is visible after 2s, show everything
-    setTimeout(() => {
-      revealEls.forEach(el => el.classList.add('visible'));
-    }, 2000);
-  } else {
-    // No IntersectionObserver support - show everything
-    document.body.classList.add('no-observer');
-  }
+  // No scroll reveal animations - everything visible immediately
 
   // Form submission
   document.querySelector('.form-submit').addEventListener('click', function(e) {
