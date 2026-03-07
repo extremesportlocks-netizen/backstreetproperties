@@ -678,6 +678,56 @@
     transform: translateY(-1px);
   }
 
+  /* ─── TRUST BADGES ─── */
+  .trust-badges {
+    padding: 60px 40px;
+    background: var(--gray-900);
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .trust-badges-inner {
+    max-width: 900px; margin: 0 auto;
+    display: flex; justify-content: center; gap: 48px;
+    flex-wrap: wrap; align-items: center;
+  }
+  .trust-badge-item {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 12px; text-align: center;
+    padding: 28px 32px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    min-width: 200px;
+    transition: all 0.4s ease;
+    cursor: default;
+  }
+  .trust-badge-item:hover {
+    border-color: rgba(255,184,28,0.25);
+    background: rgba(255,184,28,0.03);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(255,184,28,0.06);
+  }
+  .trust-badge-icon {
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .trust-badge-stars {
+    display: flex; gap: 3px;
+  }
+  .trust-badge-stars svg { width: 16px; height: 16px; fill: var(--gold); }
+  .trust-badge-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--white); font-weight: 600;
+  }
+  .trust-badge-sub {
+    font-size: 12px; color: var(--gray-300); font-weight: 300;
+    margin-top: -4px;
+  }
+  @media (max-width: 768px) {
+    .trust-badges-inner { gap: 16px; }
+    .trust-badge-item { min-width: 160px; padding: 20px 20px; flex: 1; }
+  }
+
   /* ─── CTA BANNER ─── */
   .cta-banner {
     background: var(--gold);
@@ -1190,6 +1240,68 @@
         <div class="testimonial-author">James R.</div>
         <div class="testimonial-loc">Baldwin, PA</div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BADGES -->
+<div class="trust-badges">
+  <div class="trust-badges-inner">
+    <!-- Google Reviews -->
+    <div class="trust-badge-item reveal-scale">
+      <div class="trust-badge-icon">
+        <svg viewBox="0 0 48 48" width="48" height="48">
+          <path d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z" fill="#FFB81C"/>
+        </svg>
+      </div>
+      <div class="trust-badge-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="trust-badge-label">Google Reviews</div>
+      <div class="trust-badge-sub">5.0 Star Rating</div>
+    </div>
+
+    <!-- BBB A+ -->
+    <div class="trust-badge-item reveal-scale">
+      <div class="trust-badge-icon">
+        <svg viewBox="0 0 48 48" width="48" height="48">
+          <rect x="4" y="4" width="40" height="40" rx="6" fill="none" stroke="#FFB81C" stroke-width="2.5"/>
+          <text x="24" y="20" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#FFB81C" font-weight="bold">BBB</text>
+          <text x="24" y="37" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#FFB81C" font-weight="bold">A+</text>
+        </svg>
+      </div>
+      <div class="trust-badge-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="trust-badge-label">BBB Accredited</div>
+      <div class="trust-badge-sub">A+ Rating</div>
+    </div>
+
+    <!-- Yelp -->
+    <div class="trust-badge-item reveal-scale">
+      <div class="trust-badge-icon">
+        <svg viewBox="0 0 48 48" width="48" height="48">
+          <path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4z" fill="none" stroke="#FFB81C" stroke-width="2.5"/>
+          <text x="24" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#FFB81C" font-weight="bold">Y</text>
+        </svg>
+      </div>
+      <div class="trust-badge-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="trust-badge-label">Yelp Reviews</div>
+      <div class="trust-badge-sub">5.0 Star Rating</div>
     </div>
   </div>
 </div>
